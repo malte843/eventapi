@@ -49,7 +49,7 @@ public class EventBus {
             return;
         final List<MethodInfo> sortedWrappers = wrappers.stream().sorted(Comparator.comparingInt(info -> -info.getPriority().ordinal())).collect(Collectors.toList());
         sortedWrappers.forEach(info -> {
-            if (event instanceof EventCancellable && ((EventCancellable) event).isCancelled() && !info.isIgnoreCancelled())
+            if (event instanceof EventCancellable && ((EventCancellable) event).isCancelled() && info.isIgnoreCancelled())
                 return;
             try {
                 info.getMethod().invoke(info.getListener(), event);

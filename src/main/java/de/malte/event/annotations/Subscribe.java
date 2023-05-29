@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Subscribe {
     Priority value() default Priority.DEFAULT;
-    boolean ignoreCancelled() default false;
+    boolean ignoreCancelled() default true;
 }
