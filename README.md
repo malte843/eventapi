@@ -1,4 +1,3 @@
-# eventapi
 [![](https://jitpack.io/v/malte843/eventapi.svg)](https://jitpack.io/#malte843/eventapi)
 
 very very simple event api
@@ -7,8 +6,8 @@ to add it to your project click on the jitpack badge and follow the instructions
 
 ```
 EventBus eventBus = new EventBus(); // Initialize an EventBus. Optionally you could add ErrorHandling.THROW if you want to get the Exceptions that occur in a event to get thrown instad of logged
-eventBus.register(this); // Register a Listener
-eventBus.unregister(this); // Unregister a Listener
+eventBus.register(listener); // Register a Listener
+eventBus.unregister(listener); // Unregister a Listener
 eventBus.call(new ExampleEvent()); // Call an event
 ```
 
