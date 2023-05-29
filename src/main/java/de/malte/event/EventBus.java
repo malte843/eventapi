@@ -7,12 +7,17 @@ import lombok.Data;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
 @Data
 public class EventBus {
-    private final Map<Class<?>, Set<MethodInfo>> listenerMap = new HashMap<>();
+    private final Map<Class<?>, Set<MethodInfo>> listenerMap = new ConcurrentHashMap<>();
     private final ErrorHandling errorHandling;
 
     public EventBus() {
@@ -35,7 +40,7 @@ public class EventBus {
             Class<?> clazz = params[0];
             Subscribe annotation = method.getAnnotation(Subscribe.class);
             MethodInfo info = new MethodInfo(listener, method, annotation.value(), annotation.ignoreCancelled());
-            listenerMap.computeIfAbsent(clazz, set -> new HashSet<>()).add(info);
+            listenerMap.computeIfAbsent(clazz, set -> new CopyOnWriteArraySet<>()).add(info);
         }
     }
 
