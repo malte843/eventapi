@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'io.freefair.lombok' version '8.0.1'
+    id 'maven-publish'
 }
 
 group = 'de.malte'
@@ -21,3 +22,16 @@ test {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'de.malte'
+            artifactId = 'EventAPI'
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
+
